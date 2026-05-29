@@ -13,6 +13,7 @@
   background: linear-gradient(102.24deg, #7c5a50 33.07%, #c18362 84.03%);
   border-radius: 14.23px;
   padding: 16px 12px;
+  box-shadow: 2px 2px 4px 0px #00000040;
 }
 
 .chip {
@@ -69,7 +70,7 @@
   background-color: #f5f2ef33;
   border-radius: 12px;
   border: 0.4px solid #7c5a50;
-  box-shadow: 2px 2px 10px 0px #0000001a;
+  box-shadow: 2px 2px 4px 0px #7c5a5033;
   overflow: hidden;
 
   display: flex;
@@ -116,7 +117,7 @@
   background-color: #f5f2ef;
   border-radius: 12px;
   border: 0.4px solid #7c5a50;
-  box-shadow: 2px 2px 10px 0px #0000001a;
+  box-shadow: 2px 2px 4px 0px #7c5a5033;
 
   display: flex;
   flex-direction: column;
@@ -157,6 +158,8 @@
   border-radius: 8px;
   border: 0.4px solid #deccba;
   padding-left: 10px;
+  color: #6e6e6e;
+  font-size: 12px;
 }
 
 .input::placeholder {

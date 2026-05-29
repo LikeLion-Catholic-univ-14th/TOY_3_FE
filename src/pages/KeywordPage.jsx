@@ -1,15 +1,18 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header/Header";
 import logo from "../assets/Frame 283.svg";
 import searchLogo from "../assets/Component 5.svg";
 import styles from "./styles/KeywordPage.module.css";
 import { keywords } from "../data/keywords";
 import Button from "../components/Button/Button";
+import StepProgressBar from "../components/StepProgressBar/StepProgressBar";
 
-export default function KeywordPage({ onSubmit }) {
+export default function KeywordPage() {
+  const navigate = useNavigate();
   const [selectedKeywords, setSelectedKeywords] = useState([]);
 
-  const handleKeywordChipClick = (keyword) => {
+  const handleKeywordClick = (keyword) => {
     setSelectedKeywords((prev) => {
       if (prev.includes(keyword)) {
         return prev.filter((k) => k !== keyword);
@@ -22,14 +25,17 @@ export default function KeywordPage({ onSubmit }) {
   };
 
   const handleSubmit = () => {
-    if (onSubmit) {
-      onSubmit(selectedKeywords);
-    }
+    if (selectedKeywords.length === 0) return;
+
+    navigate("/tag", {
+      state: { selectedKeywords },
+    });
   };
 
   return (
     <div className={styles.container}>
-      <Header text="MoodSpot" img={logo} />
+      <Header text="✦ MoodSpot" img={logo} />
+      <StepProgressBar />
       <div className={styles.desBox}>
         <div className={styles.chip}>Keyword-Based Curation</div>
         <span className={styles.mainText}>
@@ -53,7 +59,7 @@ export default function KeywordPage({ onSubmit }) {
                 className={`${styles.keywordChip} ${
                   selectedKeywords.includes(keyword) ? styles.selected : ""
                 }`}
-                onClick={() => handleKeywordChipClick(keyword)}
+                onClick={() => handleKeywordClick(keyword)}
               >
                 {keyword}
               </button>
@@ -83,7 +89,11 @@ export default function KeywordPage({ onSubmit }) {
         </div>
       </div>
 
-      <Button text="키워드 분석하기 ✦" onClick={handleSubmit} />
+      <Button
+        text="키워드 분석하기 ✦"
+        onClick={handleSubmit}
+        disabled={selectedKeywords.length === 0}
+      />
     </div>
   );
 }

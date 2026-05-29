@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 44px;
+}
+
+.segment {
+  width: 85px;
+  height: 5px;
+  border-radius: 20px;
+}
+
+.active {
+  background-color: #564139;
+}
+
+.inactive {
+  background-color: #d9d9d9;
+}

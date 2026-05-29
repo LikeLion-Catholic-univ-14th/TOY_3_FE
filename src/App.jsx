@@ -1,26 +1,20 @@
-import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
 import KeywordPage from "./pages/KeywordPage";
 import TagPage from "./pages/TagPage";
 import SearchPage from "./pages/SearchPage";
 import ImagePage from "./pages/ImagePage";
 
 function App() {
-  const [selectedKeywords, setSelectedKeywords] = useState([]);
-  const [currentPage, setCurrentPage] = useState("keyword");
-
-  const handleKeywordSubmit = (keywords) => {
-    setSelectedKeywords(keywords);
-    setCurrentPage("tag");
-  };
-
   return (
     <>
-      {currentPage === "keyword" && (
-        <KeywordPage onSubmit={handleKeywordSubmit} />
-      )}
-      {currentPage === "tag" && <TagPage selectedKeywords={selectedKeywords} />}
-      {/* <SearchPage /> */}
-      {/* <ImagePage /> */}
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<KeywordPage />} />
+        <Route path="/tag" element={<TagPage />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/image" element={<ImagePage />} />
+      </Routes>
     </>
   );
 }
