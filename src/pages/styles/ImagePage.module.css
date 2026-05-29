@@ -1,0 +1,171 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 80px;
+}
+
+.imgUproadBox {
+  width: 354px;
+  height: 187px;
+  border-radius: 15px;
+  border: 0.4px dashed #572c19;
+  background-color: #fff;
+  margin-bottom: 23px;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.cameraLogo {
+  margin-top: 14px;
+}
+
+.imgUproadBoxTitleText {
+  font-weight: 800;
+  font-size: 18px;
+  color: #572c19;
+}
+
+.imgUproadBoxDesText {
+  font-weight: 400;
+  font-size: 12px;
+  color: #572c19;
+  text-align: center;
+}
+
+.imgUproadBoxChip {
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 0.4px solid #000000;
+  background-color: #f2ede6;
+
+  display: flex;
+  font-weight: 700;
+  font-size: 14px;
+  color: #572c19;
+}
+
+.resultTextBox {
+  width: 354px;
+  padding: 18px 16px;
+  border-radius: 15px;
+  background-color: #3a2218;
+  margin-bottom: 23px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  color: #fff;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.resultTextBoxChip {
+  width: 89px;
+  height: 19px;
+  border-radius: 5px;
+  background-color: #bdd8d8;
+
+  font-weight: 800;
+  font-size: 12px;
+  color: #3a2218;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.resultTagBox {
+  width: 354px;
+  padding: 16px 15px;
+  border-radius: 15px;
+  border: 0.4px solid #572c19;
+  background-color: #fff;
+  margin-bottom: 23px;
+
+  font-weight: 600;
+  font-size: 13px;
+  color: #572c19;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.line {
+  border: 1px solid #92715e;
+}
+
+.chip {
+  border-radius: 20px;
+  padding: 5px 12px;
+  background-color: #e9dbd3;
+  border: 0.4px solid #492f1c;
+  color: #492f1c;
+  font-weight: 600;
+  font-size: 13px;
+  display: inline-block;
+}
+
+.chipContainer {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 8px;
+  column-gap: 11px;
+}
+
+.subBox {
+  width: 354px;
+  padding: 12px 13px;
+  border-radius: 15px;
+  border: 0.4px solid #492f1c;
+  background-color: #fff;
+
+  display: flex;
+  gap: 16px;
+}
+
+.subBox img {
+  width: 42px;
+  height: 42px;
+}
+
+.subBoxContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.columnTitle {
+  font-weight: 800;
+  font-size: 16px;
+  color: #572c19;
+}
+
+.columnDes {
+  font-weight: 400;
+  font-size: 13px;
+  color: #572c19;
+  line-height: 20px;
+}
+
+.subBoxContainer .subBox:last-child {
+  margin-bottom: 35px;
+}
+
+.uploadedImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
