@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Header from "../components/Header/Header";
 import logo from "../assets/Frame 283-1.svg";
@@ -12,12 +12,43 @@ export default function TagPage() {
   const navigate = useNavigate();
   const { state } = useLocation();
   const selectedKeywords = state?.selectedKeywords;
-  const [resultTags, setResultTags] = useState([]);
+  const [recommendedTags, setRecommendedTags] = useState([]);
 
   const handleSubmit = () => {
     navigate("/search", {
-      state: { resultTags },
+      state: { selectedKeywords, recommendedTags },
     });
+  };
+
+  // 직전 페이지에서 전달받은 키워드로 태그 추천받기
+  useEffect(() => {
+    if (selectedKeywords.length === 0) return;
+
+    fetchRecommendedTags();
+  }, []);
+
+  const fetchRecommendedTags = async () => {
+    try {
+      const params = new URLSearchParams();
+
+      selectedKeywords.forEach((keyword) => {
+        params.append("tagNames", keyword);
+      });
+
+      const res = await fetch(
+        `http://54.150.225.13:8080/recommendation?${params}`,
+      );
+
+      if (!res.ok) {
+        throw new Error("API 요청 실패");
+      }
+
+      const data = await res.json();
+
+      setRecommendedTags(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -41,41 +72,17 @@ export default function TagPage() {
       </div>
 
       <div className={styles.mainBox_2}>
-        <div className={styles.miniHeader}>
-          <span>추천 가구 태그 5개</span>
-        </div>
-        <div className={styles.imgContainer}>
-          {/* mock */}
-          <div className={styles.imgCard}>
-            <img src={tagImg}></img>
-            <div className={styles.tagChip}>
-              <span># 태그명</span>
-            </div>
-          </div>
-          <div className={styles.imgCard}>
-            <img src={tagImg}></img>
-            <div className={styles.tagChip}>
-              <span># 태그명</span>
-            </div>
-          </div>
-          <div className={styles.imgCard}>
-            <img src={tagImg}></img>
-            <div className={styles.tagChip}>
-              <span># 태그명</span>
-            </div>
-          </div>
-          <div className={styles.imgCard}>
-            <img src={tagImg}></img>
-            <div className={styles.tagChip}>
-              <span># 태그명</span>
-            </div>
-          </div>
-          <div className={styles.imgCard}>
-            <img src={tagImg}></img>
-            <div className={styles.tagChip}>
-              <span># 태그명</span>
-            </div>
-          </div>
+        <div className={styles.miniHeader}>추천 가구 태그</div>
+        <div className={styles.chipContainer}>
+          {recommendedTags.length > 0 ? (
+            recommendedTags.map((tag) => (
+              <div key={tag} className={styles.tagChip}>
+                #{tag}
+              </div>
+            ))
+          ) : (
+            <span>추천된 태그가 없습니다.</span>
+          )}
         </div>
       </div>
 
@@ -84,9 +91,8 @@ export default function TagPage() {
           <img src={bulbLogo}></img>
           <span className={styles.text}>추가로 원하는 키워드가 있으세요?</span>
         </div>
-        <div className={styles.line_2}></div>
         <span className={styles.text_2}>
-          원하는 키워드가 있다면, 이곳을 눌러 더 많은 정보를 확인하세요!
+          원하는 키워드가 있다면, MoodSpot에 정보를 추가하세요!
         </span>
       </div>
 

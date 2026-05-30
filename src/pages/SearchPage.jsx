@@ -1,15 +1,45 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import Header from "../components/Header/Header";
 import logo from "../assets/Frame 283-2.svg";
+import locationLogo from "../assets/Group 15.svg";
 import styles from "./styles/SearchPage.module.css";
 import Button from "../components/Button/Button";
 import StepProgressBar from "../components/StepProgressBar/StepProgressBar";
 
 export default function SearchPage() {
   const navigate = useNavigate();
-  const [resultTags, setResultTags] = useState([]);
-  // const [posts, setPosts] = useState([]);
+  const { state } = useLocation();
+  const selectedKeywords = state?.selectedKeywords;
+  const recommendedTags = state?.recommendedTags;
+  const tags = state?.recommendedTags ?? state?.imgTags;
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    if (!tags?.length) return;
+
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = async () => {
+    try {
+      const params = new URLSearchParams();
+
+      tags.forEach((tag) => {
+        params.append("tagNames", tag);
+      });
+
+      const res = await fetch(
+        `http://54.150.225.13:8080/recommend/furniture?${params}`,
+      );
+
+      const data = await res.json();
+
+      setPosts(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -19,91 +49,59 @@ export default function SearchPage() {
       <div className={styles.subBox}>
         <span className={styles.text}>검색 기준</span>
         <span className={styles.text_2}>
-          따뜻함 + 미니멀함 + 포근함 → 우드 / 베이지 / 브라운 / 패브릭 /
-          간접조명 태그가 포함된 판매글을 우선 정렬합니다.
+          {selectedKeywords?.length > 0
+            ? `${selectedKeywords.join(" + ")} → ${tags?.join(" / ")} 태그가 포함된 판매글을 우선 정렬합니다.`
+            : `AI 이미지 분석을 통한 ${tags?.join(" / ")} 태그가 포함된 판매글을 우선 정렬합니다.`}
         </span>
       </div>
 
       <div className={styles.appliedTagBox}>
         <span className={styles.boxTitle}>적용된 태그</span>
         <div className={styles.chipContainer}>
-          {/* {resultTags.length > 0 ? (
-            resultTags.map((tag) => (
+          {tags.length > 0 ? (
+            tags.map((tag) => (
               <div key={tag} className={styles.chip}>
-                {tag}
+                #{tag}
               </div>
             ))
           ) : (
             <span>결과 태그가 없습니다.</span>
-          )} */}
-
-          {/* mock */}
-          <div className={styles.chip}>#우드</div>
-          <div className={styles.chip}>#베이지</div>
-          <div className={styles.chip}>#패브릭</div>
-          <div className={styles.chip}>#브라운</div>
-          <div className={styles.chip}>#간접조명</div>
+          )}
         </div>
       </div>
 
       <div className={styles.listContainer}>
         <span className={styles.boxTitle}>추천 판매글 리스트</span>
         <div className={styles.listCardsContainer}>
-          <div className={styles.listCardContainer}>
-            <div className={styles.imgWrapper}>이미지 들어갈 곳</div>
-            <div className={styles.textContainer}>
-              <span className={styles.title}>베이직 패브릭 1인 소파</span>
-              <div className={styles.row}>
-                <span className={styles.price}>45,000원</span>
-                <span className={styles.location}>📍 신촌</span>
+          {posts.map((post) => (
+            <div key={post.id} className={styles.listCardContainer}>
+              <div className={styles.upContainer}>
+                <div className={styles.leftContainer}>
+                  <div className={styles.imgWrapper}></div>
+
+                  <div className={styles.mainTextContainer}>
+                    <span className={styles.title}>{post.title}</span>
+
+                    <span className={styles.price}>
+                      {post.price.toLocaleString()}원
+                    </span>
+                  </div>
+                </div>
+
+                <div className={styles.locationContainer}>
+                  <img src={locationLogo} />
+                  <span>신촌</span>
+                </div>
               </div>
-              <div className={styles.desBox}>
-                <span>
-                  포근한 패브릭 소재 + 베이지 컬러가 선택 키워드와 일치합니다.
-                </span>
-              </div>
-              <div className={styles.matchingBox}>
-                <span>매칭률 94%</span>
-              </div>
-            </div>
-          </div>
-          {/* mock */}
-          <div className={styles.listCardContainer}>
-            <div className={styles.imgWrapper}>이미지 들어갈 곳</div>
-            <div className={styles.textContainer}>
-              <span className={styles.title}>베이직 패브릭 1인 소파</span>
-              <div className={styles.row}>
-                <span className={styles.price}>45,000원</span>
-                <span className={styles.location}>📍 신촌</span>
-              </div>
-              <div className={styles.desBox}>
-                <span>
-                  포근한 패브릭 소재 + 베이지 컬러가 선택 키워드와 일치합니다.
-                </span>
-              </div>
-              <div className={styles.matchingBox}>
-                <span>매칭률 94%</span>
+
+              <span className={styles.desText}>{post.description}</span>
+
+              <div className={styles.tempContainer}>
+                <div>그래프 자리</div>
+                <span>거래 온도 94°</span>
               </div>
             </div>
-          </div>
-          <div className={styles.listCardContainer}>
-            <div className={styles.imgWrapper}>이미지 들어갈 곳</div>
-            <div className={styles.textContainer}>
-              <span className={styles.title}>베이직 패브릭 1인 소파</span>
-              <div className={styles.row}>
-                <span className={styles.price}>45,000원</span>
-                <span className={styles.location}>📍 신촌</span>
-              </div>
-              <div className={styles.desBox}>
-                <span>
-                  포근한 패브릭 소재 + 베이지 컬러가 선택 키워드와 일치합니다.
-                </span>
-              </div>
-              <div className={styles.matchingBox}>
-                <span>매칭률 94%</span>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 
@@ -115,7 +113,7 @@ export default function SearchPage() {
         <Button
           text="필터 수정하기"
           mode="secondary"
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/")}
         />
       </div>
     </div>

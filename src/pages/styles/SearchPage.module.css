@@ -22,7 +22,7 @@
 .chip {
   border-radius: 20px;
   padding: 5px 12px;
-  background-color: #e9dbd3;
+  background-color: #f3f3f3;
   border: 0.4px solid #7d5440;
   color: #572c19;
   font-weight: 600;
@@ -53,83 +53,22 @@
 
 .listCardContainer {
   width: 354px;
-  height: 158px;
-  padding: 15px 16px;
-  border-radius: 15px;
-  background-color: #93bdcf80;
-  border: 0.4px solid #648692;
+  border-radius: 11px;
+  border: 0.4px solid #00000033;
   box-shadow: 3px 3px 4px 0px #00000040;
+  padding: 13px;
+  background-color: #fff;
 
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .imgWrapper {
-  width: 67px;
-  height: 69px;
+  width: 40px;
+  height: 40px;
   background-color: #f2ede6;
   border-radius: 15px;
-}
-
-.title {
-  font-weight: 600;
-  font-size: 15px;
-  color: #420707;
-  margin-bottom: 5px;
-  display: block;
-}
-
-.row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.price {
-  font-weight: 900;
-  font-size: 15px;
-  color: #420707;
-}
-
-.location {
-  font-weight: 400;
-  font-size: 14px;
-  color: #420707;
-}
-
-.desBox {
-  width: 235px;
-  height: 48px;
-  padding: 8px 15px;
-  background-color: #f2ede6;
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.desBox span {
-  font-weight: 400;
-  font-size: 13px;
-  color: #420707;
-}
-
-.matchingBox {
-  width: 235px;
-  height: 21px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  border-radius: 15px;
-  background-color: #564139;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.matchingBox span {
-  font-weight: 700;
-  font-size: 11px;
-  color: #fff;
 }
 
 .subBox {
@@ -137,7 +76,7 @@
   padding: 16px;
   border-radius: 15px;
   border: 0.4px solid #7d5440;
-  background-color: #f7f4f3;
+  background-color: #f3f3f3;
   margin-bottom: 17px;
 
   display: flex;
@@ -164,4 +103,67 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.mainTextContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.leftContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.locationContainer {
+  display: flex;
+  gap: 3px;
+}
+
+.upContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tempContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 100%;
+  color: #000;
+}
+
+.price {
+  font-weight: 900;
+  font-size: 15px;
+  color: #000;
+}
+
+.locationContainer img {
+  width: 12px;
+  height: 14px;
+}
+
+.locationContainer span {
+  font-weight: 500;
+  font-size: 11px;
+  color: #492f1c;
+}
+
+.desText {
+  font-weight: 500;
+  font-size: 13px;
+  color: #7c5e43;
+}
+
+.tempContainer span {
+  font-weight: 500;
+  font-size: 12px;
+  color: #81bfbf;
 }

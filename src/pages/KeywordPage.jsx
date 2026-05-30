@@ -25,7 +25,10 @@ export default function KeywordPage() {
   };
 
   const handleSubmit = () => {
-    if (selectedKeywords.length === 0) return;
+    if (selectedKeywords.length === 0) {
+      alert("키워드를 선택해주세요.");
+      return;
+    }
 
     navigate("/tag", {
       state: { selectedKeywords },
@@ -42,7 +45,7 @@ export default function KeywordPage() {
           원하는 분위기를 키워드로 골라주세요.
         </span>
         <span className={styles.subText}>
-          전체 30개 키워드 중 최대 5개를 선택하면, 어울리는 가구 키워드와
+          전체 25개 키워드 중 최대 5개를 선택하면, 어울리는 가구 키워드와
           판매글을 추천해요.
         </span>
       </div>
@@ -89,11 +92,7 @@ export default function KeywordPage() {
         </div>
       </div>
 
-      <Button
-        text="키워드 분석하기 ✦"
-        onClick={handleSubmit}
-        disabled={selectedKeywords.length === 0}
-      />
+      <Button text="키워드 분석하기 ✦" onClick={handleSubmit} />
     </div>
   );
 }
