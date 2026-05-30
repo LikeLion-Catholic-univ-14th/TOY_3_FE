@@ -1,10 +1,11 @@
 .primary {
   width: 348px;
   height: 48px;
-  background-color: #564139;
+  background-color: #492f1c;
   border-radius: 15px;
   border: none;
   cursor: pointer;
+  box-shadow: 2px 2px 4px 0px #00000040;
 
   font-weight: 700;
   font-size: 20px;
@@ -21,9 +22,10 @@
   border-radius: 15px;
   border: 1px solid #572c19;
   cursor: pointer;
+  box-shadow: 2px 2px 4px 0px #00000040;
 
   font-size: 17px;
-  color: #572c19;
+  color: #7c5a50;
   display: flex;
   justify-content: center;
   align-items: center;
