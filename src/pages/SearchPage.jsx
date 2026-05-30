@@ -6,6 +6,7 @@ import locationLogo from "../assets/Group 15.svg";
 import styles from "./styles/SearchPage.module.css";
 import Button from "../components/Button/Button";
 import StepProgressBar from "../components/StepProgressBar/StepProgressBar";
+import { getImageByTitle } from "../utils/imageMapper";
 
 export default function SearchPage() {
   const navigate = useNavigate();
@@ -77,7 +78,12 @@ export default function SearchPage() {
             <div key={post.id} className={styles.listCardContainer}>
               <div className={styles.upContainer}>
                 <div className={styles.leftContainer}>
-                  <div className={styles.imgWrapper}></div>
+                  <div className={styles.imgWrapper}>
+                    <img
+                      src={getImageByTitle(post.title)}
+                      className={styles.furnitureImg}
+                    />
+                  </div>
 
                   <div className={styles.mainTextContainer}>
                     <span className={styles.title}>{post.title}</span>
