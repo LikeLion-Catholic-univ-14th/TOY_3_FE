@@ -36,7 +36,7 @@ export default function TagPage() {
       });
 
       const res = await fetch(
-        `http://54.150.225.13:8080/recommendation?${params}`,
+        `https://api.moodspot.store/recommendation?${params}`,
       );
 
       if (!res.ok) {

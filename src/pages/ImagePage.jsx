@@ -41,7 +41,7 @@ export default function ImagePage() {
       const formData = new FormData();
       formData.append("image", selectedFile); // key 이름은 백엔드 확인 필요
 
-      const res = await fetch("http://54.150.225.13:8080/api/ai/analyze", {
+      const res = await fetch("https://api.moodspot.store/api/ai/analyze", {
         method: "POST",
         body: formData,
       });

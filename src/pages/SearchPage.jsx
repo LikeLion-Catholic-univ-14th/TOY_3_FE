@@ -32,7 +32,7 @@ export default function SearchPage() {
       });
 
       const res = await fetch(
-        `http://54.150.225.13:8080/recommend/furniture?${params}`,
+        `https://api.moodspot.store/recommend/furniture?${params}`,
       );
 
       const rawData = await res.json();
