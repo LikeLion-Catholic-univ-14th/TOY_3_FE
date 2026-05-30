@@ -7,6 +7,7 @@ import styles from "./styles/SearchPage.module.css";
 import Button from "../components/Button/Button";
 import StepProgressBar from "../components/StepProgressBar/StepProgressBar";
 import { getImageByTitle } from "../utils/imageMapper";
+import { locations } from "../data/locations";
 
 export default function SearchPage() {
   const navigate = useNavigate();
@@ -34,7 +35,12 @@ export default function SearchPage() {
         `http://54.150.225.13:8080/recommend/furniture?${params}`,
       );
 
-      const data = await res.json();
+      const rawData = await res.json();
+      const data = rawData.map((post) => ({
+        ...post,
+        location: locations[Math.floor(Math.random() * locations.length)],
+        temperature: Math.floor(Math.random() * 30) + 70,
+      }));
 
       setPosts(data);
     } catch (err) {
@@ -96,15 +102,20 @@ export default function SearchPage() {
 
                 <div className={styles.locationContainer}>
                   <img src={locationLogo} />
-                  <span>신촌</span>
+                  <span>{post.location}</span>
                 </div>
               </div>
 
               <span className={styles.desText}>{post.description}</span>
 
               <div className={styles.tempContainer}>
-                <div>그래프 자리</div>
-                <span>거래 온도 94°</span>
+                <div className={styles.tempBar}>
+                  <div
+                    className={styles.tempBarFill}
+                    style={{ width: `${post.temperature}%` }}
+                  />
+                </div>
+                <span>거래 온도 {post.temperature}°</span>
               </div>
             </div>
           ))}
