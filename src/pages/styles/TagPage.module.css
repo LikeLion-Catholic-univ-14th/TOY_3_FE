@@ -11,7 +11,6 @@
   background-color: #f3f3f3;
   border-radius: 12px;
   border: 0.4px solid #7c5a50;
-  box-shadow: 2px 2px 4px 0px #7c5a5033;
 
   overflow: hidden;
 
@@ -26,7 +25,6 @@
   background-color: #f3f3f3;
   border-radius: 12px;
   border: 0.4px solid #7c5a50;
-  box-shadow: 2px 2px 4px 0px #7c5a5033;
   overflow: hidden;
 
   display: flex;
@@ -52,7 +50,6 @@
 
   font-weight: 600;
   font-size: 12px;
-  display: inline-block;
 }
 
 .chipContainer {
@@ -91,7 +88,6 @@
   background-color: #bdd8d8;
   border-radius: 12px;
   border: 0.4px solid #a4c4cf;
-  box-shadow: 2px 2px 4px 0px #00000040;
   margin-bottom: 35px;
 
   display: flex;
@@ -134,17 +130,13 @@
 }
 
 .tagChip {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 20px;
-  padding: 5px 10px;
+  border-radius: 28px;
+  padding: 5px 12px;
   background-color: #7c5a50;
-  box-shadow: 0px 4px 4px 0px #00000040;
-
-  font-weight: 500;
-  font-size: 8px;
   color: #fff;
+
+  font-weight: 600;
+  font-size: 12px;
 }
 
 .tagChip span {

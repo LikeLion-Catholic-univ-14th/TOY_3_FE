@@ -72,7 +72,7 @@ export default function SearchPage() {
               </div>
             ))
           ) : (
-            <span>결과 태그가 없습니다.</span>
+            <span className={styles.text_2}>결과 태그가 없습니다.</span>
           )}
         </div>
       </div>
